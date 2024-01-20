@@ -16,7 +16,7 @@ public class Main {
         animals.add(new Cat("Bony", 1.0,3.2,"British Shorthair"));
 
         for (Animal animal:animals) {
-            Class clazz = animal.getClass();
+            Class<?> clazz = animal.getClass();
             Field[] fields = clazz.getDeclaredFields();
             Method[] methods = clazz.getDeclaredMethods();
             System.out.println("Класс объекта: " + clazz.getName());
@@ -28,7 +28,7 @@ public class Main {
             for (Method method: methods) {
                 String methodName = method.getName();
                 System.out.println(methodName);
-                if (methodName == "makeSound"){
+                if (methodName.equals("makeSound")){
                     method.invoke(animal);
                 }
             }
@@ -40,7 +40,7 @@ public class Main {
                 makeSoundMethod.invoke(animal);
                 System.out.println();
             } catch (NoSuchMethodException e) {
-                System.out.println("У этого животного такого метода нет\n");;
+                System.out.println("У этого животного такого метода нет\n");
             }
         }
     }
